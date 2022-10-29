@@ -1,10 +1,23 @@
 package com.example.dependencyinjectionstart.example1
 
+
 import dagger.Module
 import dagger.Provides
 
 @Module
 class ComputerModule {
+
+
+
+    @Provides
+    fun provideComputer(
+        monitor: Monitor,
+        computerTower: ComputerTower,
+        keyboard: Keyboard,
+        mouse: Mouse
+    ): Computer {
+        return Computer(monitor, computerTower, keyboard, mouse)
+    }
 
     @Provides
     fun provideMonitor(): Monitor {
@@ -12,13 +25,12 @@ class ComputerModule {
     }
 
     @Provides
-    fun provideKeyboard(): Keyboard {
-        return Keyboard()
-    }
-
-    @Provides
-    fun provideMouse(): Mouse {
-        return Mouse()
+    fun provideComputerTower(
+        storage: Storage,
+        memory: Memory,
+        processor: Processor
+    ): ComputerTower {
+        return ComputerTower(storage, memory, processor)
     }
 
     @Provides
@@ -37,21 +49,17 @@ class ComputerModule {
     }
 
     @Provides
-    fun provideComputerTower(
-        memory: Memory,
-        processor: Processor,
-        storage: Storage
-    ): ComputerTower {
-        return ComputerTower(storage, memory, processor)
+    fun provideKeyboard(): Keyboard {
+        return Keyboard()
     }
 
     @Provides
-    fun provideComputer(
-        monitor: Monitor,
-        computerTower: ComputerTower,
-        keyboard: Keyboard,
-        mouse: Mouse,
-    ): Computer {
-        return Computer(monitor, computerTower, keyboard, mouse)
+    fun provideMouse(): Mouse {
+        return Mouse()
     }
+
+
+
+
+
 }

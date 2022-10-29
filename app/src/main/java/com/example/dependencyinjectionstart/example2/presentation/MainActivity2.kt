@@ -1,16 +1,14 @@
 package com.example.dependencyinjectionstart.example2.presentation
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.dependencyinjectionstart.R
 import com.example.dependencyinjectionstart.example2.ExampleApplication
 import com.example.dependencyinjectionstart.example2.di.DaggerApplicationComponent
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity2 : AppCompatActivity() {
 
     @Inject
     lateinit var exampleViewModelFactory : ExampleViewModelFactory
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val component by lazy {
         (application as ExampleApplication).component
             .activityComponentFactory()
-            .create("MY_ID_1", "NAME_1")
+            .create("MY_ID_2", "NAME_2")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +34,5 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.method()
         viewModel2.method()
-
-        findViewById<TextView>(R.id.tv_hello_world).setOnClickListener {
-            Intent(this, MainActivity2::class.java).apply {
-                startActivity(this)
-            }
-        }
     }
 }

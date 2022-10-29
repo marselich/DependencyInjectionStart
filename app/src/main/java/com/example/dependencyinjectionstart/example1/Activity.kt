@@ -1,13 +1,14 @@
 package com.example.dependencyinjectionstart.example1
 
-import javax.inject.Inject
-
 class Activity {
 
-    @Inject
-    lateinit var computer: Computer
-
-    init {
-        DaggerNewComponent.create().inject(this)
-    }
+    val monitor = Monitor()
+    val keyboard = Keyboard()
+    val mouse = Mouse()
+    val computerTower = ComputerTower(
+        Storage(),
+        Memory(),
+        Processor()
+    )
+    val computer = Computer(monitor, computerTower, keyboard, mouse)
 }
